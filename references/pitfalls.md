@@ -105,7 +105,7 @@ TEST_HOST = "$(BUILT_PRODUCTS_DIR)/<App>.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/<A
 
 - **Artifacts 计入 Actions 存储额度并按 14 天默认保留**；Release 不计费。
 - 实践：IPA/构建信息发布到固定 tag 的 Release（如 `ios-latest`，`gh release upload --clobber` 覆盖），
-  artifact 保留期缩到 3 天仅供 PR 验证。
+  不使用 Artifacts，正式产物走 Release（SKILL 已同步无额度占用方案）。
 - Release 步骤仅 main 触发（`if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'`）。
 
 ## 7. 迭代方法

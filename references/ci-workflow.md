@@ -91,7 +91,9 @@ xcodebuild archive \
 要点：
 - workflow 顶层 `permissions: contents: write`（fork PR 自动只读，无提权风险）。
 - 固定 tag `ios-latest` 覆盖发布，用户永远只记一个下载地址。
-- artifact 保留期缩到 3 天（供 PR 验证与失败排查），正式产物走 Release。
+- **不使用 Artifacts**（Artifacts 计入 Actions 存储额度且默认保留 14 天）：
+  IPA/构建信息只发 Release；PR 构建仅验证不发布；失败排查用 Actions 运行页在线日志
+  （`gh run view <id> --log-failed`），不下载产物。
 
 ## iLoader 本地签名（构建方之外的最后一环）
 
